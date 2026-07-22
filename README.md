@@ -43,11 +43,13 @@ git clone https://github.com/yuyz-cyber/resume-skill.git \
 
 ```text
 resume-skill/
-├── SKILL.md                         # 工作流、事实边界与输出要求
-├── agents/
-│   └── openai.yaml                  # 可选的平台展示元数据
+├── SKILL.md                         # 通用工作流、资源路由与事实边界
 ├── references/
-│   └── resume-rules.md              # 中文技术简历写作与取舍规则
+│   ├── impact-writing.md            # 项目成果、工作量与量化产出
+│   ├── job-alignment.md             # JD 能力提取、证据匹配与排序
+│   └── latex-delivery.md            # 一页排版、安全生成与交付检查
+├── scripts/
+│   └── compile-resume.sh            # XeLaTeX 编译与一页 A4 验证
 └── assets/
     └── latex-template/
         ├── resume.tex               # 去信息化的一页简历入口
@@ -58,7 +60,9 @@ resume-skill/
             └── you.png              # 中性证件照占位图
 ```
 
-`SKILL.md` 负责执行流程，`references/` 提供内容判断规则，`assets/` 负责最终的一页 LaTeX 排版与资源。
+`SKILL.md` 只负责串联通用流程；`references/` 按核心特性提供专项规则；`scripts/` 执行确定性检查；`assets/` 提供完整的一页 LaTeX 简历资源。
+
+PDF 交付验证需要本机提供 XeLaTeX 与 `pdfinfo`；缺少任一工具时，Skill 仍可生成 TeX 源文件，但不会把未经完整校验的 PDF 标记为完成。
 
 Resume Skill 只优化真实经历的表达和组织，不编造项目、职责、指标、奖项或日期。
 
