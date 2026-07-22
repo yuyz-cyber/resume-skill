@@ -1,46 +1,51 @@
 ---
 name: resume-skill
-description: Create, optimize, tailor, and compile professional one-page Chinese LaTeX resumes for computer science students applying to backend, AI infrastructure, AI agent, algorithm, and systems roles. Use when a user provides resume content or career facts in PDF, DOCX, TeX, Markdown, or chat and wants weak project or internship descriptions clarified, quantified with verified evidence, matched to a job description, reformatted, or generated as TeX and PDF. 面向中国技术岗实习、校招和应届求职的简历生成与优化。
+description: 面向中国高校技术岗实习、校招和应届求职的简历生成与优化。用于读取 PDF、DOCX、TeX、Markdown 或对话事实，提炼项目与实习贡献，核实并突出成果指标，按目标岗位选择模块，并生成、编译和检查一页中文 LaTeX 简历。
 ---
 
-# Resume Skill
+# 中文技术简历优化
 
-## Goal
+## 目标
 
-Turn rough or unfocused facts into a credible one-page Chinese technical resume. Treat optimization of an existing resume as the default and generation from supplied facts as the secondary mode.
+把零散、空泛或重点不清的事实整理为可信、具体、便于快速扫描的一页中文技术简历。默认优化已有简历；没有现成简历时，也可以根据用户在对话中提供的事实生成完整版本。
 
-## Required Reference
+## 必读规则
 
-Read [references/resume-rules.md](references/resume-rules.md) completely before evaluating or writing resume content.
+评价、改写或生成简历前，完整阅读 [references/resume-rules.md](references/resume-rules.md)。
 
-## Workflow
+## 工作流程
 
-1. Inspect all supplied files and messages. Use the available PDF, document, or LaTeX capability for the source format. Extract text and inspect rendered layout when the source has visual structure.
-2. Identify the target role or extract it from a supplied job description. If it is missing and role choice would materially change the resume, include it in one compact clarification request.
-3. Build an internal fact ledger before rewriting. Separate confirmed facts, ambiguity, missing high-value evidence, and unsupported or conflicting claims.
-4. Diagnose each project and internship for personal ownership, implemented modules, core mechanisms, engineering scope, constraints, and outcomes.
-5. If evidence is missing, ask one compact batch of high-impact questions. Ask only questions whose answers can change selection, ordering, or wording. Never invent answers or metrics.
-6. Rank experiences by role relevance, technical depth, ownership, outcome strength, and recency. Compress weak or repetitive wording before removing substantive content.
-7. Rewrite with concrete technical evidence while preserving confirmed project names, organizations, dates, award levels, and responsibility boundaries.
-8. Copy `assets/latex-template/resume.tex` and `assets/latex-template/resume.cls` into a user output directory. Replace the template body with confirmed content; never edit the installed template in place.
-9. Compile the populated source with XeLaTeX twice when available. Default to one A4 page unless the user requests otherwise.
-10. Inspect compile warnings and visually inspect the rendered PDF. Iterate until content and layout pass the reference checklist.
-11. Return the editable `.tex`, supporting `.cls`, compiled `.pdf` when available, a concise change summary, and any unresolved factual gaps.
+1. 读取用户提供的文件和消息。根据输入格式使用可用的 PDF、文档或 LaTeX 能力；源文件具有视觉结构时，同时提取文本并检查渲染页面。
+2. 确认目标岗位，或从职位描述中提取核心能力。若岗位缺失且会实质影响经历选择，将其放入一次集中追问。
+3. 改写前建立内部事实表，区分已确认事实、歧义、高价值缺口、冲突和缺乏依据的主张。
+4. 盘点教育、项目、实习、科研、开源、竞赛、荣誉、专业技能和学生工作，按岗位相关性与证据强度选择模块，不套用固定组合。
+5. 诊断技术经历中的个人责任、核心模块、实现机制、工程范围、困难约束和验证结果。
+6. 信息不足时，一次集中询问少量会改变内容选择、排序或措辞的问题。不得编造答案、指标或责任边界。
+7. 按岗位相关性、技术深度、个人责任、成果强度和时间排序。先压缩重复和空泛表达，再考虑删除低价值内容。
+8. 保留用户确认的项目名、单位、学校、日期和奖项。用具体技术证据重写，并仅用 `\Key{}` 标记责任边界、核心贡献和经确认指标。
+9. 把 `assets/latex-template/` 完整复制到用户输出目录，不在已安装的母版中直接写入用户信息。
+10. 处理页眉图片：用户提供校徽或证件照时分别替换为 `images/school.png` 和 `images/you.png`；用户明确不需要时，将对应页眉参数留空。每份简历最多一个校徽和一张证件照。
+11. 使用 XeLaTeX 连续编译两次，默认保持一页 A4。检查错误、溢出、字体嵌入、分页和占位内容。
+12. 渲染 PDF 并进行视觉检查，迭代到层级、密度、对齐、换行和关键点高亮均符合规则。
+13. 返回可编辑 TeX、配套类文件和资源、可用时的 PDF、主要调整说明，以及仍未确认的事实。
 
-## Interaction Rules
+## 交互规则
 
-- Accept natural conversation and existing resume files; never require a form, YAML file, or manual template editing.
-- Produce a complete first version directly when the information is sufficient.
-- Ask only high-impact factual questions. Do not prolong the interaction for optional details.
-- Treat user corrections as authoritative. Update the fact ledger before revising the output.
-- Suggest useful measurement dimensions, but require the user to confirm every numeric value and disclosure-sensitive claim.
-- Do not silently delete substantive experiences or rename projects into promotional descriptions.
-- Do not claim successful compilation, one-page output, or visual quality without running the relevant checks.
+- 接受自然对话和已有简历文件，不要求用户填写表单、YAML 或手工改模板。
+- 信息充分时直接生成完整第一版，不为可有可无的字段延长对话。
+- 用户纠正具有最高优先级；先更新事实表，再修订输出。
+- 可以建议量化维度，但所有数字、统计口径和敏感信息都必须由用户确认。
+- 不静默删除重要经历，不擅自把项目名改成宣传性描述。
+- 用户明确要求保留某模块时优先尊重；若会明显削弱一页效果，先说明取舍。
+- 未实际运行检查时，不宣称已经编译成功、恰好一页或视觉效果良好。
 
-## Output Rules
+## 输出规则
 
-- Use the bundled template rather than preserving a weak source layout unless the user explicitly requests layout preservation.
-- Default to no photo or logo. If the user supplies and requests a school logo, use at most one.
-- Keep projects, internships, awards, and student activities distinct when those sections are present.
-- Do not leave sample content or template markers in a generated user resume.
-- If XeLaTeX is unavailable, still provide valid TeX and state that PDF compilation was not verified.
+- 默认使用内置模板重排弱版式；用户明确要求保留原版式时除外。
+- 教育背景是学生和应届生的默认模块；其余模块按事实价值选择，不生成空模块。
+- 项目、实习、荣誉和学生工作在出现时保持独立，不为了节省标题而混合。
+- 模板草稿默认展示 `school.png` 和 `you.png` 的中性占位图；正式用户简历必须替换或明确取消，不能残留占位图。
+- 每条项目或实习描述通常只高亮一至两个短语，不整句加粗，不使用荧光背景。
+- 不用放大字号、拉大行距或添加装饰填满页面；也不靠过小字体强塞一页。
+- 生成结果不得包含示例内容、模板标记、未确认数据或他人信息。
+- XeLaTeX 不可用时仍提供有效 TeX，并明确说明 PDF 未经过编译验证。
