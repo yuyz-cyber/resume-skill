@@ -4,7 +4,7 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827.svg)](SKILL.md)
 [![LaTeX: XeLaTeX](https://img.shields.io/badge/LaTeX-XeLaTeX-008080.svg)](assets/latex-template/resume.tex)
 
-**Resume Skill** 面向中国互联网技术岗求职：给它一份现有简历或几段真实经历，它会提炼核心贡献、追问可验证成果、匹配目标岗位，并生成简洁专业的一页中文 LaTeX 简历。
+**Resume Skill** 面向中国互联网技术岗求职，围绕目标岗位从项目与实习中梳理个人职责、工程工作量和核心贡献，并通过对话补全有口径、可核验的量化产出，最终整理为重点明确、证据充分的一页中文简历。
 
 ## 安装
 
