@@ -12,7 +12,14 @@
 
 ## 使用方式
 
-把本仓库放入支持 Agent Skills 的技能目录，然后在对话中调用：
+Codex 用户可以直接克隆到技能目录：
+
+```bash
+git clone https://github.com/yuyz-cyber/resume-skill.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/resume-skill"
+```
+
+重新启动或刷新 Codex 后，在对话中调用：
 
 ```text
 使用 $resume-skill 优化这份简历，目标岗位是 AI Infra。保留真实项目名，不要编造指标，生成一页 TeX 和 PDF。
@@ -36,7 +43,15 @@
 
 ## 编译
 
-模板使用 XeLaTeX：
+模板使用 XeLaTeX，需要完整的 TeX Live 或 MacTeX，并包含 `ctex`、`fontspec`、`xeCJK` 等常用宏包。macOS 可以安装 MacTeX：
+
+```bash
+brew install --cask mactex
+eval "$(/usr/libexec/path_helper)"
+xelatex --version
+```
+
+进入模板目录后连续编译两次：
 
 ```bash
 cd assets/latex-template
@@ -59,4 +74,6 @@ xelatex resume.tex
 
 ## 许可证
 
-Skill 文档和模板代码采用 MIT License。思源字体和 TeX Gyre 字体分别遵循 `fonts/` 中附带的字体许可证。
+Skill 文档、模板代码以及 `school.png`、`you.png` 两张中性占位图采用 MIT License。
+
+字体不适用 MIT License：思源宋体和思源黑体遵循各自的 SIL Open Font License，TeX Gyre Termes 遵循 GUST Font License，完整文本均位于 `assets/latex-template/fonts/`。

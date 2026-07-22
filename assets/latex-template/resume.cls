@@ -170,7 +170,7 @@
     {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
   \end{tabularx}\par
   \ifthenelse{\isempty{#2}}{}{%
-    \vspace{-0.20em}{\fontsize{9.9pt}{12pt}\selectfont #2}\par
+    \vspace{-0.20em}{\fontsize{10.05pt}{12pt}\selectfont #2}\par
   }%
   \vspace{0.03em}
 }
