@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Skill"
+  short_description: "优化技术岗简历内容并生成一页中文 LaTeX PDF 文件"
+  default_prompt: "Use $resume-skill to optimize my technical resume for a target role and generate a one-page LaTeX PDF."

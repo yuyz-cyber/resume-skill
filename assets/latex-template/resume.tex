@@ -1,0 +1,58 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass{resume}
+
+\begin{document}
+
+% 可选校徽：仅在用户明确提供并要求时启用，且最多保留一个。
+% \ResumeHeader[images/school-logo.png]{候选人姓名}{手机号 · \href{mailto:name@example.com}{name@example.com}}{个人主页或代码仓库}
+\ResumeHeader
+  {候选人姓名}
+  {手机号 · \href{mailto:name@example.com}{name@example.com}}
+  {个人主页或代码仓库}
+
+\ResumeSection{教育背景}
+\ResumeEntry{学校名称}{学院名称 · 专业名称}{20XX -- 20XX}
+\ResumeEntry{学校名称}{学院名称 · 专业名称}{20XX -- 20XX}
+
+\ResumeSection{项目经历}
+\ResumeProject{项目名称 A}{一句话说明项目要解决的工程问题及使用场景。}{20XX}
+\begin{ResumeBulletList}
+  \item 说明本人负责的核心模块、接口、算法或执行路径，并标明与上下游系统的边界，体现明确的个人责任。
+  \item 描述关键机制、技术决策和约束条件，说明如何解决主要瓶颈或复杂问题，以及所作的工程取舍。
+  \item 填写经确认的性能、规模、准确率或落地结果，并说明基线与测试条件；没有可靠数字时使用可验证的工程范围。
+\end{ResumeBulletList}
+
+\ResumeProject{项目名称 B}{用必要背景建立问题，避免把项目介绍写成技术名词列表。}{20XX}
+\begin{ResumeBulletList}
+  \item 展示核心贡献和完整工作链路，包括输入处理、核心逻辑和输出验证，而不是仅写“参与开发”或“负责交付”。
+  \item 说明实现如何接入整体系统，覆盖哪些异常路径、兼容性或可靠性约束，以及采用了哪些具体机制。
+  \item 给出测试、评测或验证结果采用的口径，区分真实成果、工程范围与尚未确认的量化信息。
+\end{ResumeBulletList}
+
+\ResumeSection{实习经历}
+\ResumeEntry{单位名称 · 岗位名称}{部门或团队名称}{20XX.XX -- 20XX.XX}
+\begin{ResumeBulletList}
+  \item 概括实际承担的开发、分析、测试或研究任务，并指出涉及的业务系统、接口链路和工程范围。
+  \item 描述个人完成的关键模块、问题定位或修复验证过程，区分个人贡献、团队工作与公司业务成果。
+  \item 补充可公开的规模、覆盖范围或验证结果；没有可靠指标时，不使用猜测数据制造量化效果。
+\end{ResumeBulletList}
+
+\ResumeSection{荣誉奖项}
+\ResumeAward{荣誉或奖项名称}{奖项级别}{20XX.XX}
+\ResumeAward{荣誉或奖项名称}{奖项级别}{20XX.XX}
+
+\ResumeSection{学生工作}
+\ResumeEntry{组织名称 · 职位名称}{}{20XX -- 20XX}
+\begin{ResumeBulletList}
+  \item 用一句话说明有事实依据的职责、活动或成果，避免与荣誉奖项合并。
+\end{ResumeBulletList}
+
+% 可选模块：用户没有可验证的专业技能时删除。
+\ResumeSection{专业技能}
+\begin{ResumeBulletList}
+  \item 编程语言、框架、数据库与基础设施应来自项目或实习中的真实使用，并按目标岗位的重要程度排序。
+  \item 只保留能由经历支撑的技能，不使用主观熟练度进度条，也不为匹配职位描述添加未使用过的技术。
+\end{ResumeBulletList}
+
+\end{document}

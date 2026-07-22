@@ -1,0 +1,7 @@
+.DS_Store
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.xdv
+assets/latex-template/resume.pdf
