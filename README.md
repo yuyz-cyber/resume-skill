@@ -14,36 +14,30 @@
 
 ## 安装
 
-### Claude Code
+安装目录取决于使用的 Agent；如果同时使用多个 Agent，请分别安装。
 
-项目级安装：
+### Claude Code
 
 ```bash
 git clone https://github.com/yuyz-cyber/resume-skill.git \
   .claude/skills/resume-skill
 ```
 
-个人级安装使用 `~/.claude/skills/resume-skill`。目录约定见 [Claude Code Skills](https://code.claude.com/docs/en/skills)。
-
 ### Codex
-
-项目级安装：
 
 ```bash
 git clone https://github.com/yuyz-cyber/resume-skill.git \
   .agents/skills/resume-skill
 ```
 
-个人级安装使用 `~/.agents/skills/resume-skill`。目录约定见 [Codex Skills](https://developers.openai.com/codex/skills/)。
-
-### 其他 Agent Skills 兼容工具
+### 其他兼容 Agent
 
 ```bash
 git clone https://github.com/yuyz-cyber/resume-skill.git \
   /path/to/skills/resume-skill
 ```
 
-将目标路径替换为对应工具的 Skill 目录。仓库遵循 [Agent Skills](https://agentskills.io/specification) 的 `SKILL.md` 结构。
+将目标路径替换为对应工具的 Skills 目录。仓库遵循 [Agent Skills](https://agentskills.io/specification) 的 `SKILL.md` 结构。
 
 ## 架构
 
