@@ -4,7 +4,7 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-111827.svg)](https://agentskills.io/specification)
 [![LaTeX: XeLaTeX](https://img.shields.io/badge/LaTeX-XeLaTeX-008080.svg)](assets/latex-template/resume.tex)
 
-> **不是包装经历，而是让你的价值被看见。** Resume Skill 根据你的经历与目标岗位，提炼亮点、讲清关键产出，生成一页重点突出、专业可信的中文简历。
+> **不是包装经历，而是让你的价值被看见。** Resume Skill 根据你的经历与目标岗位，提炼亮点、讲清关键产出，生成一页高质量的中文简历。
 
 ## 功能
 
