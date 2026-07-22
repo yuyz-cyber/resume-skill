@@ -4,7 +4,7 @@
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-111827.svg)](https://agentskills.io/specification)
 [![LaTeX: XeLaTeX](https://img.shields.io/badge/LaTeX-XeLaTeX-008080.svg)](assets/latex-template/resume.tex)
 
-**Resume Skill** 是面向中国互联网技术岗的通用 Agent Skill，围绕目标岗位梳理项目与实习中的个人职责、工程工作量和核心贡献，通过对话补全有口径、可核验的量化产出，并生成重点明确、证据充分的一页中文简历。
+**Resume Skill** 根据现有简历或个人经历，结合目标岗位提炼亮点、强化关键产出，让每段经历更有说服力，生成重点突出、专业可信的一页中文简历。
 
 ## 功能
 
