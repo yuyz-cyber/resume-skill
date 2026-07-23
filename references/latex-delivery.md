@@ -130,7 +130,7 @@ assets/latex-template/
 在 Skill 根目录运行：
 
 ```bash
-scripts/compile-resume.sh /path/to/generated-resume
+bash scripts/compile-resume.sh /path/to/generated-resume
 ```
 
 脚本依赖 XeLaTeX 和 `pdfinfo`，编译两次后检查页数、A4 尺寸和关键日志警告。任一工具不可用时保留源文件，并明确说明未生成经过完整验证的 PDF。
