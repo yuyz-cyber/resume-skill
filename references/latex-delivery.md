@@ -23,9 +23,9 @@ assets/latex-template/
 | `\ResumeHeader` | 校徽、姓名、联系方式和证件照 |
 | `\ResumeSection` | 独立内容模块 |
 | `\ResumeEntry` | 教育、实习、学生工作等条目 |
-| `\ResumeProject` | 项目标题、项目介绍和时间 |
+| `\ResumeProject` | 项目标题和时间 |
 | `\ResumeProjectStack` | 项目内部的一行技术栈 |
-| `\ResumeProjectWork` | 项目工作标签，后接 2–4 条要点 |
+| `\ResumeProjectSummary` | 技术栈之后的一句话项目定位 |
 | `\ResumeAward` | 荣誉奖项 |
 | `\ResumeLine` | 技能等单行内容 |
 | `\Key` | 责任边界、核心贡献或经确认指标 |
@@ -66,27 +66,25 @@ assets/latex-template/
 
 不要重复转义模板命令，生成后检查 PDF 可见文本及链接目标是否仍与原事实一致。
 
-## 项目区块映射
+## 项目结构映射
 
-项目内容遵循 [impact-writing.md](impact-writing.md) 的“项目介绍—技术栈—项目工作”结构，并使用模板命令稳定呈现：
+项目内容遵循 [impact-writing.md](impact-writing.md) 的“标题—技术栈—一句话定位—核心亮点”结构，并使用模板命令稳定呈现：
 
 ```tex
-\ResumeProject{项目名称（可选：准确定位）}
-  {一句话说明项目解决的问题、整体方案和用途。}
-  {20XX}
+\ResumeProject{项目名称（可选：准确定位）}{20XX}
 \ResumeProjectStack{本人实际使用并能解释的关键技术。}
-\ResumeProjectWork
+\ResumeProjectSummary{一句话说明项目解决的问题、整体方案和形成的能力。}
 \begin{ResumeBulletList}
   \item 参与或负责的具体对象、动作和范围。
-  \item 关键机制、实现细节、困难约束或工程取舍。
-  \item 验证方式、覆盖范围、完成状态或经确认结果。
+  \item 关键机制、困难约束、工程取舍或经确认结果。
 \end{ResumeBulletList}
 ```
 
-- `\ResumeProject` 自动为第二个参数添加“项目介绍：”标签；该句只描述项目或团队层面的问题、整体方案和用途，不写个人实现、指标或获奖结果。
-- `\ResumeProjectStack` 每个项目保留一行，只列本人实际使用、能够解释且与项目工作对应的技术。页面紧张时删除低价值技术，不传空参数。
-- `\ResumeProjectWork` 后必须接 `ResumeBulletList`，通常写 2–4 条。贡献较小时保留“参与、协助、负责其中”等真实边界，不为追求强动词夸大职责。
-- 结构标签使用模板默认粗体作为导航；`\Key{}` 留给责任边界、核心机制、工程范围和经确认结果，每条至多一至两个短语。
+- `\ResumeProject` 只呈现标题和右对齐时间，不承载描述。
+- `\ResumeProjectStack` 紧接标题，每个项目保留一行，只列本人实际使用、能够解释且与亮点对应的技术。页面紧张时删除低价值技术，不传空参数。
+- `\ResumeProjectSummary` 放在技术栈之后，仅用一句话说明项目或团队层面的问题、整体方案和形成的能力，不写个人实现、指标或获奖结果。
+- `ResumeBulletList` 紧接一句话定位，默认写 2–3 条核心亮点。贡献较小时保留“参与、协助、负责其中”等真实边界，不为追求强动词夸大职责。
+- “技术栈”使用模板默认粗体作为导航；`\Key{}` 留给责任边界、核心机制、工程范围和经确认结果，每条至多一至两个短语。
 
 ## 模块选择
 
@@ -142,7 +140,7 @@ bash scripts/compile-resume.sh /path/to/generated-resume
 - 所有事实与用户材料和纠正一致；
 - 最相关、最有区分度的证据靠前；
 - 强项目体现个人贡献、工程工作量和结果；
-- 项目按“项目介绍—技术栈—项目工作”分区，三部分信息职责清楚；
+- 项目按“标题—技术栈—一句话定位—核心亮点”排列，阅读顺序稳定；
 - 数字具有口径、基线和验证方式；
 - 不存在示例文字、占位数据、未解决歧义或未替换图片；
 - `\Key{}` 只用于责任边界、核心贡献和确认指标。
