@@ -18,18 +18,21 @@
 \ResumeEntry{学校名称}{学院名称 · 专业名称}{20XX -- 20XX}
 
 \ResumeSection{项目经历}
-\ResumeProject{项目名称 A}{用一句话说明需要解决的工程问题和系统定位，不把背景写成技术名词列表。}{20XX}
+\ResumeProject{项目名称 A}{用一句话说明项目解决的问题、整体方案和用途；这里描述项目本身，不暗示全部工作均由个人完成。}{20XX}
+\ResumeProjectStack{填写本人实际使用、能够解释并与下方工作对应的语言、框架、数据库或基础设施。}
+\ResumeProjectWork
 \begin{ResumeBulletList}
-  \item \Key{独立完成}核心模块、接口或算法实现，说明输入、核心逻辑、输出以及与上下游系统的责任边界。
-  \item 设计关键执行机制，处理性能、并发、可靠性或资源限制，并说明具体实现与工程取舍。
-  \item 建立基线和验证流程，在口径确认后填写\Key{性能提升 XX\%}、吞吐、准确率或覆盖范围等结果。
+  \item \Key{参与或负责具体模块}，说明本人完成的对象、动作、范围以及与团队工作的边界。
+  \item 说明关键实现、数据流或工程约束；贡献较小时使用“参与”“协助”，不升级为“独立完成”或“主导”。
 \end{ResumeBulletList}
 
-\ResumeProject{项目名称 B}{保留必要背景，把主要篇幅用于个人贡献、实现深度和可验证结果。}{20XX}
+\ResumeProject{项目名称 B}{用一句话概括关键问题、项目采用的整体方案以及提供的用途或能力。}{20XX}
+\ResumeProjectStack{填写与项目工作直接对应的关键技术；页面紧张时删除低价值技术，不删除此区块。}
+\ResumeProjectWork
 \begin{ResumeBulletList}
   \item \Key{负责核心链路}，覆盖数据处理、核心计算、异常路径和结果校验，体现完整而具体的工程工作量。
   \item 重构关键数据布局或调用路径，结合基准测试定位瓶颈，并说明优化如何接入整体系统。
-  \item 给出经确认的测试环境、比较基线和最终结果；没有可靠数字时，使用模块范围与验证证据。
+  \item 给出经确认的测试环境、比较基线和\Key{最终结果}；没有可靠数字时，使用模块范围与验证证据。
 \end{ResumeBulletList}
 
 \ResumeSection{实习经历}
@@ -59,5 +62,7 @@
 
 % 其他可选模块可以复用现有命令：
 % \ResumeSection{科研经历 / 开源经历 / 竞赛经历}
-% \ResumeProject{经历名称}{必要背景}{20XX}
+% \ResumeProject{经历名称}{一句话项目介绍}{20XX}
+% \ResumeProjectStack{关键技术}
+% \ResumeProjectWork
 \end{document}

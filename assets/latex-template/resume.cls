@@ -164,13 +164,17 @@
   \vspace{0.05em}
 }
 
+\newcommand{\ResumeProjectDetail}[2]{%
+  \noindent{\fontsize{10.05pt}{12pt}\selectfont\textbf{#1：}#2}\par
+}
+
 \newcommand{\ResumeProject}[3]{%
   \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
     {\fontsize{10.55pt}{12.3pt}\selectfont\textbf{#1}} &
     {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
   \end{tabularx}\par
   \ifthenelse{\isempty{#2}}{}{%
-    \vspace{-0.20em}{\fontsize{10.05pt}{12pt}\selectfont #2}\par
+    \vspace{-0.20em}\ResumeProjectDetail{项目介绍}{#2}
   }%
   \vspace{0.03em}
 }
@@ -185,6 +189,12 @@
 \newcommand{\ResumeLine}[2]{%
   \noindent\textbf{#1}\ifthenelse{\isempty{#1}}{}{：}#2\par
 }
+
+\newcommand{\ResumeProjectStack}[1]{%
+  \ResumeProjectDetail{技术栈}{#1}%
+}
+
+\newcommand{\ResumeProjectWork}{\ResumeProjectDetail{项目工作}{}}
 
 \newenvironment{ResumeBulletList}
   {\begin{itemize}}
