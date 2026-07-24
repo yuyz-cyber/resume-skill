@@ -156,11 +156,11 @@
 
 \newcommand{\ResumeHeader}[5]{%
   \noindent
-  \begin{minipage}[c]{0.13\textwidth}
-    \centering #1
+  \begin{minipage}[t]{0.13\textwidth}
+    \vspace{0pt}\centering #1
   \end{minipage}%
-  \begin{minipage}[c]{0.74\textwidth}
-    \centering
+  \begin{minipage}[t]{0.74\textwidth}
+    \vspace{0pt}\centering
     {\Huge\bfseries\color{primaryColor}#2}\par
     \vspace{0.35ex}
     {\sffamily\normalsize #3}\par
@@ -169,8 +169,8 @@
     }%
   \end{minipage}%
   \ifthenelse{\isempty{#5}}{}{%
-    \begin{minipage}[c]{0.13\textwidth}
-      \raggedleft #5
+    \begin{minipage}[t]{0.13\textwidth}
+      \vspace{0pt}\raggedleft #5
     \end{minipage}%
   }
   \vspace{0.15em}
