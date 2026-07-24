@@ -25,6 +25,7 @@ assets/latex-template/
 | `\ResumeEntry` | 教育、实习、学生工作等条目 |
 | `\ResumeProject` | 项目标题和时间 |
 | `\ResumeProjectStack` | 项目内部的一行技术栈 |
+| `\ResumeProjectSummary` | 技术栈之后的一句话项目介绍 |
 | `\ResumeAward` | 荣誉奖项 |
 | `\ResumeLine` | 技能等单行内容 |
 | `\Key` | 责任边界、核心贡献或经确认指标 |
@@ -67,21 +68,22 @@ assets/latex-template/
 
 ## 项目结构映射
 
-项目内容遵循 [impact-writing.md](impact-writing.md) 的“标题—技术栈—2–3 条要点”结构。第一条要点兼任项目概括，不额外增加介绍行：
+项目内容遵循 [impact-writing.md](impact-writing.md) 的“标题—技术栈—一句话项目介绍—两条核心亮点”结构：
 
 ```tex
 \ResumeProject{项目名称（可选：准确定位）}{20XX}
 \ResumeProjectStack{本人实际使用并能解释的关键技术。}
+\ResumeProjectSummary{一句话前置最强结果或差异化机制，并说明解决的关键问题。}
 \begin{ResumeBulletList}
-  \item 一句话说明项目解决的问题、整体方案和形成的能力。
   \item 本人参与或负责的对象、范围、关键机制与工程约束。
-  \item 验证方式、完成状态或经确认结果。
+  \item 验证口径、系统接入、完成状态或另一项独立贡献。
 \end{ResumeBulletList}
 ```
 
 - `\ResumeProject` 只呈现标题和右对齐时间，不承载描述。
 - `\ResumeProjectStack` 紧接标题，每个项目保留一行，只列本人实际使用、能够解释且与要点对应的技术。页面紧张时删除低价值技术，不传空参数。
-- `ResumeBulletList` 紧接技术栈，默认三条、最多三条。第一条是项目概括，后两条是核心工作与结果；贡献较小时保留两条，不为追求完整编造内容。
+- `\ResumeProjectSummary` 紧接技术栈并单独成行，必须包含最强结果或差异化机制，不写中性背景。
+- `ResumeBulletList` 紧接项目介绍，默认两条核心亮点。只有独立高价值证据无法合并时才保留第三条；贡献较小时允许一条，不为追求完整编造内容。
 - “技术栈”使用模板默认粗体作为导航；`\Key{}` 留给责任边界、核心机制、工程范围和经确认结果，每条至多一至两个短语。
 
 ## 模块选择
@@ -139,7 +141,7 @@ bash scripts/compile-resume.sh /path/to/generated-resume
 - 所有事实与用户材料和纠正一致；
 - 最相关、最有区分度的证据靠前；
 - 强项目体现个人贡献、工程工作量和结果；
-- 项目按“标题—技术栈—2–3 条要点”排列，第一条兼任项目概括；
+- 项目按“标题—技术栈—一句话项目介绍—两条核心亮点”排列，只读项目介绍即可识别最强结果或差异化价值；
 - 数字具有口径、基线和验证方式；
 - 不存在示例文字、占位数据、未解决歧义或未替换图片；
 - `\Key{}` 只用于责任边界、核心贡献和确认指标。

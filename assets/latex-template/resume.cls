@@ -191,6 +191,10 @@
   \ResumeProjectDetail{技术栈}{#1}%
 }
 
+\newcommand{\ResumeProjectSummary}[1]{%
+  \noindent{\fontsize{10.05pt}{12pt}\selectfont #1}\par
+}
+
 \newenvironment{ResumeBulletList}
   {\begin{itemize}}
   {\end{itemize}}
