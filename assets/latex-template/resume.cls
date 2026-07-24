@@ -168,9 +168,11 @@
       \vspace{0.15ex}{\sffamily\normalsize #4}\par
     }%
   \end{minipage}%
-  \begin{minipage}[c]{0.13\textwidth}
-    \raggedleft #5
-  \end{minipage}
+  \ifthenelse{\isempty{#5}}{}{%
+    \begin{minipage}[c]{0.13\textwidth}
+      \raggedleft #5
+    \end{minipage}%
+  }
   \vspace{0.15em}
 }
 

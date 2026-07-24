@@ -12,6 +12,7 @@ test -f "$template/fonts/fontawesome/LICENSE.txt"
 
 grep -Fq '\LoadClass[11pt,a4paper]{article}' "$template/resume.cls"
 grep -Fq '\newcommand{\ResumeSection}[2]' "$template/resume.cls"
+grep -Fq '\ifthenelse{\isempty{#5}}{}{' "$template/resume.cls"
 grep -Fq '\schoolbadge{0.092}' "$template/resume.tex"
 grep -Fq '\ResumeSection{\faGraduationCap}{教育背景}' "$template/resume.tex"
 grep -Fq '\ResumeProjectSummary{' "$template/resume.tex"
