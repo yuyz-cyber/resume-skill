@@ -164,10 +164,6 @@
   \vspace{0.05em}
 }
 
-\newcommand{\ResumeProjectDetail}[2]{%
-  \noindent{\fontsize{10.05pt}{12pt}\selectfont\textbf{#1：}#2}\par
-}
-
 \newcommand{\ResumeProject}[2]{%
   \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
     {\fontsize{10.55pt}{12.3pt}\selectfont\textbf{#1}} &
@@ -188,7 +184,7 @@
 }
 
 \newcommand{\ResumeProjectStack}[1]{%
-  \ResumeProjectDetail{技术栈}{#1}%
+  \noindent{\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}\textbf{技术栈：}#1}\par
 }
 
 \newcommand{\ResumeProjectSummary}[1]{%
