@@ -6,12 +6,12 @@ Improve the bundled one-page Chinese technical resume so recruiters can scan it 
 
 ## Selected Direction
 
-Use a compact single-column engineering layout inspired by mature one-page resume systems:
+Preserve the existing header, education, and honors layout. Apply the compact single-column engineering treatment only to projects and subsequent modules:
 
-- left-aligned header with logo, name, and right-aligned contact information;
-- stable right-aligned date column;
+- centered identity header with the existing balanced logo and optional portrait columns;
+- existing two-line education entries and honors rhythm;
+- stable right-aligned date columns throughout;
 - thin section rules and consistent vertical rhythm;
-- education and honors presented as compact single-line entries where content permits;
 - no sidebar, metric chips, decorative blocks, or dense two-column body.
 
 The layout should remain ATS-readable and preserve the current bundled fonts, optional school logo, and optional portrait.
@@ -63,8 +63,9 @@ Update the LaTeX delivery reference to:
 
 ## Template Changes
 
-- Redesign the header as a compact left-aligned row while retaining all four image modes.
+- Preserve the existing centered header and all four image modes.
 - Add a reusable project evidence command or convention for bold semantic labels.
+- Keep education and honors structure unchanged when the requested scope starts at projects.
 - Keep section headings, date alignment, colors, and embedded fonts restrained.
 - Update the bundled template example to demonstrate the selected project structure.
 

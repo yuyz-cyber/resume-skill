@@ -13,6 +13,7 @@
 - Keep a single-column A4 layout and embedded bundled fonts.
 - Keep body text at 10 pt or larger.
 - Preserve optional school logo and portrait modes.
+- Preserve the existing centered header, education, and honors layout; apply visual changes only from projects onward.
 - Use a natural one-sentence project statement, not a forced semicolon-separated problem/solution formula.
 - Use normally two semantic evidence lines per project.
 - Rewrite content before reducing spacing or font size.
@@ -108,9 +109,9 @@ git commit -m "test: define resume visual contract"
 - Consumes: `\ResumeEvidence{label}{body}` contract from Task 1
 - Produces: compact header, semantic project evidence command, and compilable bundled example
 
-- [ ] **Step 1: Implement the compact header**
+- [ ] **Step 1: Preserve the existing header**
 
-Update `\ResumeHeader` so the logo and name form a left-aligned identity group and contact lines align right. Preserve pure-text, logo-only, portrait-only, and logo-plus-portrait modes. Use the existing image helpers and a single `tabularx` row; do not add dependencies.
+Keep the centered `\ResumeHeaderText` and balanced left/right image columns. Preserve pure-text, logo-only, portrait-only, and logo-plus-portrait modes without changing the education or honors layout.
 
 - [ ] **Step 2: Add semantic evidence rendering**
 
