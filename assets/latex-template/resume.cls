@@ -6,8 +6,8 @@
 \RequirePackage[
   left=1.52cm,
   right=1.52cm,
-  top=1.08cm,
-  bottom=1.05cm,
+  top=0.94cm,
+  bottom=0.86cm,
   noheadfoot
 ]{geometry}
 \RequirePackage{xcolor}
@@ -68,14 +68,14 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\renewcommand\normalsize{\fontsize{10.35pt}{12.75pt}\selectfont}
+\renewcommand\normalsize{\fontsize{10pt}{12.05pt}\selectfont}
 \AtBeginDocument{\normalsize\color{ResumeCharcoal}}
 
 \setlist[itemize]{
   leftmargin=1.35em,
   label=\textbullet,
-  topsep=0.13em,
-  itemsep=0.08em,
+  topsep=0.08em,
+  itemsep=0.04em,
   parsep=0pt,
   partopsep=0pt
 }
@@ -84,7 +84,7 @@
   {\fontsize{13.2pt}{15pt}\selectfont\bfseries\color{ResumeNavy}\raggedright}
   {}{0pt}{}
   [\vspace{0.06em}\color{ResumeRule}\titlerule]
-\titlespacing*{\section}{0pt}{0.46em}{0.24em}
+\titlespacing*{\section}{0pt}{0.38em}{0.18em}
 
 % 只高亮责任边界、核心贡献和经确认指标，不用于整句加粗。
 \newcommand{\Key}[1]{{\ResumeKeyLatin\ResumeKeyCJK #1}}
@@ -118,58 +118,63 @@
   }%
 }
 
-\newcommand{\ResumeHeaderText}[3]{%
-  {\fontsize{21.5pt}{23.5pt}\selectfont\bfseries\color{ResumeNavy}#1}\par
-  \vspace{0.13em}
-  {\fontsize{9.7pt}{11.3pt}\selectfont #2}\par
-  \ifthenelse{\isempty{#3}}{}{%
-    \vspace{0.02em}{\fontsize{9.5pt}{11pt}\selectfont #3}\par
+\newcommand{\ResumeHeaderName}[1]{%
+  {\fontsize{21pt}{23pt}\selectfont\bfseries\color{ResumeNavy}#1}%
+}
+
+\newcommand{\ResumeHeaderContact}[2]{%
+  {\fontsize{9.35pt}{10.9pt}\selectfont #1}\par
+  \ifthenelse{\isempty{#2}}{}{%
+    \vspace{0.03em}{\fontsize{9.2pt}{10.7pt}\selectfont #2}\par
   }%
 }
 
 % 参数依次为：校徽路径、姓名、第一行联系方式、第二行联系方式、证件照路径。
-% 图片路径为空即可取消。始终保留等宽左右栏，使单图模式的姓名仍居中。
+% 图片路径为空即可取消。身份信息左对齐，联系方式右对齐。
 \newcommand{\ResumeHeader}[5]{%
   \ifthenelse{\isempty{#1}}{%
     \ifthenelse{\isempty{#5}}{%
-      \begin{center}
-        \ResumeHeaderText{#2}{#3}{#4}
-      \end{center}
+      \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}r@{}}
+        \ResumeHeaderName{#2} & \ResumeHeaderContact{#3}{#4}
+      \end{tabularx}
     }{%
-      \begin{tabularx}{\textwidth}{@{}p{1.46cm}X p{1.46cm}@{}}
-        {} &
-        \centering\arraybackslash\ResumeHeaderText{#2}{#3}{#4} &
-        \raggedleft\arraybackslash\ResumePhotoImage{#5}
+      \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}r>{\raggedleft\arraybackslash}m{1.30cm}@{}}
+        \ResumeHeaderName{#2} & \ResumeHeaderContact{#3}{#4} & \ResumePhotoImage{#5}
       \end{tabularx}
     }%
   }{%
-    \begin{tabularx}{\textwidth}{@{}p{1.46cm}X p{1.46cm}@{}}
-      \centering\ResumeLogoImage{#1} &
-      \centering\arraybackslash\ResumeHeaderText{#2}{#3}{#4} &
-      \ifthenelse{\isempty{#5}}{}{\raggedleft\arraybackslash\ResumePhotoImage{#5}}
-    \end{tabularx}
+    \ifthenelse{\isempty{#5}}{%
+      \begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}m{1.28cm}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}r@{}}
+        \ResumeLogoImage{#1} & \ResumeHeaderName{#2} & \ResumeHeaderContact{#3}{#4}
+      \end{tabularx}
+    }{%
+      \begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}m{1.28cm}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}r>{\raggedleft\arraybackslash}m{1.30cm}@{}}
+        \ResumeLogoImage{#1} & \ResumeHeaderName{#2} & \ResumeHeaderContact{#3}{#4} & \ResumePhotoImage{#5}
+      \end{tabularx}
+    }%
   }%
-  \vspace{-0.34em}
+  \vspace{0.16em}\par
+  {\color{ResumeRule}\hrule height 0.55pt}\vspace{-0.20em}
 }
 
 \newcommand{\ResumeSection}[1]{\section{#1}}
 
 \newcommand{\ResumeEntry}[3]{%
   \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textbf{#1} & {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
+    \textbf{#1}\ifthenelse{\isempty{#2}}{}{%
+      \textcolor{ResumeMuted}{ · #2}%
+    } &
+    {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
   \end{tabularx}\par
-  \ifthenelse{\isempty{#2}}{}{%
-    \vspace{-0.22em}{\fontsize{9.65pt}{11.4pt}\selectfont\color{ResumeMuted}#2}\par
-  }%
-  \vspace{0.05em}
 }
 
 \newcommand{\ResumeProject}[2]{%
+  \vspace{0.18em}%
   \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
     {\fontsize{10.55pt}{12.3pt}\selectfont\textbf{#1}} &
     {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#2}
   \end{tabularx}\par
-  \vspace{-0.10em}
+  \vspace{-0.08em}
 }
 
 \newcommand{\ResumeAward}[3]{%
@@ -184,11 +189,18 @@
 }
 
 \newcommand{\ResumeProjectStack}[1]{%
-  \noindent{\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}\textbf{技术栈：}#1}\par
+  \noindent{\fontsize{9.35pt}{10.8pt}\selectfont\color{ResumeMuted}\textbf{技术：}#1}\par
 }
 
 \newcommand{\ResumeProjectSummary}[1]{%
-  \noindent{\fontsize{10.05pt}{12pt}\selectfont #1}\par
+  \noindent{\fontsize{10pt}{11.8pt}\selectfont #1}\par
+}
+
+\newcommand{\ResumeEvidence}[2]{%
+  \noindent
+  \hangindent=1.32em\hangafter=1%
+  \makebox[1.32em][l]{\textbullet}%
+  \textbf{#1：}#2\par
 }
 
 \newenvironment{ResumeBulletList}
