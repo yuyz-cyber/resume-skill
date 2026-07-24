@@ -1,175 +1,188 @@
-# Outer-Template Resume Baseline Design
+# Resume Mother Template And Generic Skill Design
 
 ## Goal
 
-Replace the current generic resume presentation with the proven visual system from
-the workspace-level `resume-zh_CN.tex`, and correct the Skill so future resumes
-preserve research stature, readable hierarchy, and one-page visual quality.
+Build a general resume Skill around one proven Chinese technical-resume mother
+template.
 
-The work has two deliverables:
+The two layers have different responsibilities:
 
-1. update the user's personal resume directly from the existing outer template;
-2. rebuild the public Skill template around the same hierarchy with redistributable
-   fonts and icon assets.
+- the mother template controls presentation;
+- the Skill controls content extraction, rewriting, selection, and placement.
 
-## Source Of Truth
+The Skill must remain usable for different candidates, roles, experience types,
+module preferences, and source formats. No personal project, fixed project count,
+or candidate-specific wording belongs in the public Skill rules.
 
-The visual source of truth is `/Users/admin/Documents/resume/resume-zh_CN.tex` and
-its rendered PDF. The current `skill-demo-resume` class is not a design baseline.
+## Mother Template
 
-The following outer-template properties must be preserved:
+The approved visual baseline is the original outer resume used during development.
+Its hierarchy and proportions should be migrated into `assets/latex-template/`
+rather than redesigned.
 
-- centered name and contact block with a single school logo;
-- the current logo scale and header proportions;
-- FontAwesome icons for contact information and section headings;
-- 11 pt document scale with readable 10 pt project body text;
-- blue section headings with a thin full-width rule;
-- bold left-aligned entry titles and stable right-aligned dates;
-- the existing education and honors layout;
-- the project hierarchy `title -> 项目介绍 -> 技术栈 -> 项目工作 -> bullets`;
-- conventional bullet indentation instead of repeated semantic-label prefixes.
+The mother template owns these decisions:
 
-The personal resume keeps its existing Adobe fonts because they are already local.
-The public Skill must not redistribute those fonts. It reproduces the same layout
-with bundled Source Han Serif/Sans fonts and a bundled FontAwesome font.
+- centered identity header;
+- one school logo with an optional portrait;
+- restrained image dimensions and balanced header columns;
+- FontAwesome contact and section icons;
+- 11 pt document scale with readable project body text;
+- blue section headings and thin full-width rules;
+- bold entry titles and stable right-aligned dates;
+- compact education and honors rows;
+- project hierarchy:
+  `title -> 项目介绍 -> 技术栈 -> 项目工作 -> bullets`;
+- conventional bullet indentation and consistent vertical rhythm;
+- single-column A4 output optimized for one-page technical resumes.
 
-## Scope
+These are template-level visual constraints, not content rules. The Skill may omit
+an unused module or optional image, but it should not silently replace the visual
+system with another class, icon set, heading style, or project layout.
 
-### Personal Resume
+The public mother template uses redistributable bundled assets:
 
-Do not change the header, education, or honors in `resume-zh_CN.tex`.
+- Source Han Serif/Sans for Chinese;
+- TeX Gyre Termes for Latin text and numbers;
+- FontAwesome for icons;
+- neutral replaceable school-logo and portrait placeholders.
 
-Only edit:
+## Generic Skill Responsibilities
 
-- project experience;
-- internship experience when compression is required;
-- student work when compression is required.
+The Skill accepts PDF, DOCX, TeX, Markdown, plain text, or conversational facts and
+performs four general operations:
 
-Keep three projects in this order:
+1. extract and normalize confirmed facts;
+2. identify the strongest evidence in each experience;
+3. rewrite and select content for the target role;
+4. place the result into the mother template and verify the rendered PDF.
 
-1. TraceAFL;
-2. OpenMux;
-3. the AVX polynomial-ring multiplication project.
+The Skill must not assume:
 
-### Resume Skill
+- a fixed number of projects;
+- a fixed module set or module order;
+- that every candidate has internships, awards, skills, or student work;
+- that every project is an engineering project;
+- that every project needs the same number or style of bullets;
+- that a technical term is valuable merely because it appears in the source.
 
-Update:
+Education, awards, projects, internships, research, open source, skills, and
+student work remain independent optional modules. Selection and ordering depend on
+the candidate's facts, target role, and signal strength.
 
-- the LaTeX template and bundled assets;
-- project-writing guidance;
-- LaTeX delivery and visual-review guidance;
-- regression tests;
-- the demonstration resume.
+## Content Model
 
-The Skill must treat an existing resume's successful visual system as evidence.
-When the user identifies a version as the baseline, content optimization must not
-replace its class, fonts, icons, image scale, or hierarchy unless explicitly asked.
+### Common Project Unit
 
-## Project Writing Model
-
-Projects remain complete reading units with this order:
+When information is sufficient, a project is written as:
 
 ```text
-Project title                                                   Date/status
-项目介绍：the concrete problem, core insight, and project value
-技术栈：only technologies that support the described work
+项目名称或正式成果名称                                      时间/状态
+项目介绍：具体问题 + 核心思路或机制 + 项目价值
+技术栈：与实际贡献直接相关、本人能够解释的技术
 项目工作：
-- implementation ownership, scope, and core mechanism
-- system or algorithm detail that demonstrates engineering/research depth
-- evaluation method and confirmed outcome when independently valuable
+- 个人责任、实现范围和关键机制
+- 工程难点、系统接入、验证方式或结果
+- 仅在存在第三项独立高价值证据时增加一条
 ```
 
-Two bullets are the default for compact engineering projects. Three bullets are
-appropriate for research projects when method, system implementation, and
-evaluation are independent evidence. The Skill must not force every project into
-the same bullet count or semantic-label format.
+This is a reading order, not a sentence template. Wording must remain natural.
+Two bullets are common, not mandatory. Three bullets are appropriate when they
+carry independent method, implementation, and evaluation evidence.
 
-### Research Projects
+Do not force a semantic prefix such as `系统架构：` or `性能验证：` onto every
+bullet. A prefix is used only when it shortens scanning without duplicating the
+sentence.
 
-For a paper or research-system project:
+### Research And Paper Projects
 
-- preserve the official paper or system title, including its original language;
-- place submission or publication status separately from the title;
-- explain the externally understandable research problem before internal taxonomy;
-- express the insight in domain terms, not private labels or abbreviations;
-- show method, end-to-end implementation, evaluation, and outcomes;
-- use internal categories only when they are themselves understandable and
-  necessary to explain the contribution.
+For a research project:
+
+- preserve the official paper or system title supplied by the user;
+- preserve its original language when that title carries recognition;
+- place submission, acceptance, or publication status separately;
+- first explain the externally understandable research problem;
+- express the central insight in domain language;
+- distinguish method, system implementation, and evaluation when all are strong;
+- omit private taxonomy, internal labels, and unexplained abbreviations from the
+  first-pass resume description;
+- retain ownership such as independent completion when confirmed by the user.
+
+The goal is not to simplify research into a generic engineering project. It is to
+make the research question, insight, technical depth, and evidence legible to a
+technical recruiter or interviewer.
 
 ### Engineering Projects
 
 For an engineering project:
 
-- explain the concrete resource, reliability, performance, or workflow problem;
-- show architecture and the hardest implementation path;
-- use module boundaries, data flow, concurrency, storage, or validation to show
-  workload;
-- avoid generic labels that duplicate the bullet content.
+- identify the concrete resource, reliability, performance, or workflow problem;
+- show architecture only when it explains an actual implementation boundary;
+- describe the hardest request path, data flow, concurrency mechanism, storage
+  mechanism, or failure handling;
+- use module boundaries and system integration to demonstrate workload;
+- prefer confirmed operational or evaluation results over generic delivery claims.
 
-### Performance Projects
+### Performance And Algorithm Projects
 
-For a performance project:
+For a performance or algorithm project:
 
 - state the bottleneck and optimized execution path;
-- identify the algorithms or operators actually implemented;
-- describe integration into the full system;
-- report the benchmark and acceleration result with its confirmed scope.
+- identify the algorithms, operators, or data layouts actually implemented;
+- show how the optimized component was integrated into the full system;
+- report confirmed benchmark results with an understandable comparison.
 
-## TraceAFL Content
+### Internships And Other Modules
 
-The title must remain exactly:
+Internships emphasize actual tasks, system scope, debugging or implementation,
+and verification. Student work and awards remain separate modules. Skills are
+included only when they add useful retrieval keywords or evidence not already
+visible in projects.
 
-```text
-TraceAFL: Multi-View Rotating Feedback for Greybox Protocol Fuzzing
-```
+## Evidence And Quantification
 
-The right-side metadata is:
+The Skill prioritizes:
 
-```text
-ICSE 在投 · 2026
-```
+- personal ownership;
+- concrete modules, algorithms, interfaces, and execution paths;
+- difficult constraints;
+- engineering or research scope;
+- system integration;
+- evaluation design;
+- confirmed quantitative outcomes.
 
-The entry uses this content direction:
+Numbers must come from user-provided material or correction. When no reliable
+number exists, workload is expressed through scope, boundaries, constraints, and
+verification rather than invented estimates.
 
-```text
-项目介绍：有状态协议模糊测试依赖固定的覆盖或状态反馈；随着反馈逐渐
-饱和，仍能触发新协议行为的测试用例难以被识别和保留。TraceAFL 以函数
-转移刻画协议执行，并轮换多个互补反馈视角，持续改变模糊测试的探索目标。
+Internal iteration history is usually removed unless it explains a final technical
+decision. Final output should emphasize what was built, why the approach matters,
+and what result was demonstrated.
 
-技术栈：C/C++、AFLNet、源码语义分析、函数级插桩、ProFuzzBench.
+## Visual Preservation Rules
 
-项目工作：
-- 独立完成从源码函数分析、选择性插桩到在线反馈轮换的端到端系统，
-  无需协议规范、消息语法标注或人工指定状态变量。
-- 将函数执行轨迹组织为反映状态推进、消息处理和异常边界的互补视图，
-  按阶段轮换新颖性判定目标，缓解单一状态表示的观察盲区与反馈饱和。
-- 在 ProFuzzBench 上完成对比评测，平均分支覆盖率提升 3.59%，协议行为
-  语义丰富度提升 2.07x，发现 6 个未知漏洞。
-```
+When the user supplies an existing resume:
 
-Do not expose `S/P/E/U/N`, bitmap names, prompt stages, or other internal notation
-in the resume entry. Those details may be useful in the paper but reduce immediate
-comprehension in a technical resume.
+- inspect the rendered source before changing its class or style;
+- treat a user-approved version as the visual baseline;
+- keep modules outside the requested scope unchanged;
+- preserve successful typography, icon scale, image scale, alignment, and density;
+- reject a template migration when the new rendering is visibly weaker.
 
-## One-Page Composition
+When the user does not supply a preferred layout, use the bundled mother template.
 
-Preserve one A4 page without shrinking the whole document below the outer
-template's readable scale.
+Visual optimization proceeds in this order:
 
-Compression order:
+1. remove repeated or low-signal content;
+2. improve sentence length and wrapping;
+3. select modules and evidence by value;
+4. adjust project-and-module spacing within the mother template;
+5. make only small font or margin changes when the previous steps are insufficient.
 
-1. remove repeated background and duplicate mechanism wording;
-2. keep TraceAFL at three bullets and compact OpenMux/AVX to two bullets each;
-3. tighten only project-and-later spacing within the outer template's existing
-   rhythm;
-4. compact internship and student-work wording without deleting confirmed work;
-5. adjust project-body line spacing slightly only if content edits are insufficient.
+Do not shrink body text or remove high-value evidence merely to claim one page.
 
-Do not change the top section to recover space.
+## Mother Template Architecture
 
-## Template Architecture
-
-The public template should package:
+The public template packages:
 
 ```text
 assets/latex-template/
@@ -191,10 +204,11 @@ assets/latex-template/
     └── you.png
 ```
 
-The class exposes simple commands but renders the outer-template hierarchy:
+The class exposes simple content commands while preserving the mother-template
+rendering:
 
 - `\ResumeHeader`;
-- `\ResumeSection` with an icon argument or section-specific convenience command;
+- `\ResumeSection`;
 - `\ResumeEntry`;
 - `\ResumeProject`;
 - `\ResumeProjectSummary`;
@@ -204,52 +218,54 @@ The class exposes simple commands but renders the outer-template hierarchy:
 - `\ResumeAward`;
 - `\Key`.
 
-The template must support a single logo, optional portrait, and no-image mode.
+The header supports logo-only, portrait-only, logo-plus-portrait, and no-image
+modes without changing the identity block's visual balance.
 
-## Skill Behavior Changes
+## Progressive Disclosure
 
-The writing reference must:
+The main `SKILL.md` stays short and routes tasks:
 
-- distinguish research, engineering, and performance projects;
-- stop forcing semantic short labels on all bullets;
-- preserve official paper titles and separate publication status;
-- prefer understandable problem/insight language over internal taxonomies;
-- allow two or three bullets according to independent evidence.
+- content-only optimization reads the impact-writing reference;
+- role alignment additionally reads the job-alignment reference;
+- LaTeX generation and visual review additionally read the delivery reference.
 
-The delivery reference must:
+Detailed project-type guidance lives in the impact-writing reference. Template
+commands, asset requirements, compilation, and visual regression checks live in
+the delivery reference. Candidate-specific examples do not belong in either file.
 
-- name the outer hierarchy as the default visual structure;
-- require icons, image scale, title/date alignment, and bullet indentation checks;
-- require comparison against the source PDF when optimizing an existing resume;
-- reject a template migration when the new rendering is visibly weaker;
-- preserve the user's approved visual baseline outside the requested edit scope.
+## Validation
 
-## Regression Tests
+Automated checks verify:
 
-Automated checks must verify:
-
-- the public template bundles FontAwesome style, symbols, font, and license;
+- the mother template bundles FontAwesome style, symbols, font, and license;
 - the template uses icon-bearing section headings;
-- the project template contains `项目介绍`, `技术栈`, and `项目工作`;
-- the writing reference contains research-project title and internal-taxonomy rules;
+- project examples contain `项目介绍`, `技术栈`, and `项目工作`;
+- the writing reference distinguishes research, engineering, and performance
+  projects;
+- the writing reference does not impose a fixed project count or bullet count;
 - the template compiles to exactly one A4 page without box warnings;
 - all fonts are embedded.
 
-The personal and demonstration PDFs must be rendered at 150 dpi and visually
-checked for:
+Visual checks at normal page scale verify:
 
-- unchanged personal-resume top section;
-- logo and icon proportions matching the outer baseline;
-- readable English TraceAFL title and right-aligned status;
-- no short tails, collisions, clipped text, or orphan headings;
-- consistent project grouping and sufficient bottom margin.
+- balanced logo, optional portrait, name, and contact information;
+- readable icon size and alignment;
+- stable title/date columns;
+- conventional bullet indentation;
+- clear separation among project introduction, stack, and work;
+- no collisions, clipped text, orphan headings, or obvious short tails;
+- intentional page density and bottom margin.
+
+Candidate-specific resumes are local acceptance fixtures. They validate that the
+generic Skill can preserve a real visual baseline and express different project
+types, but their facts are not committed as public Skill rules.
 
 ## Acceptance Criteria
 
-- The user's personal resume uses the outer template unchanged above projects.
-- TraceAFL has the exact English paper title and no private label notation.
-- TraceAFL communicates problem, insight, independent implementation, and results.
-- The personal resume and public demonstration both compile to one A4 page.
-- The Skill's default output visually matches the outer hierarchy rather than the
-  discarded `ctexart` design.
-- The installed Skill and GitHub repository contain the same verified version.
+- The public template reproduces the approved mother-template hierarchy.
+- The Skill remains independent of any candidate, project, or fixed module set.
+- Research, engineering, and performance experiences retain their distinct value.
+- User-approved visual baselines are preserved outside the requested edit scope.
+- The bundled example and generated resumes compile to one A4 page with embedded
+  fonts and no layout warnings.
+- The installed Skill and public repository contain the same verified version.
