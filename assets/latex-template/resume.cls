@@ -88,7 +88,29 @@
   {\Large\bfseries\color{primaryColor}\raggedright}
   {}{0em}{}
   [\color{primaryColor}\titlerule]
-\titlespacing*{\section}{0cm}{0.68em}{0.40em}
+\titlespacing*{\section}{0cm}{*1.1}{*0.72}
+
+\titleformat{\subsection}
+  {\large\bfseries\color{secondaryColor}\raggedright}
+  {}{0em}{}
+\titlespacing*{\subsection}{0cm}{*0.8}{*0.28}
+
+\newcommand{\datedsubsection}[2]{%
+  \subsection[#1]{\color{secondaryColor}#1 \hfill \color{darkColor}#2}%
+}
+
+% Keep the approved upper half spacious, then tighten content-heavy modules.
+\newcommand{\ResumeCompactSections}{%
+  \titlespacing*{\section}{0cm}{*0.88}{*0.58}%
+  \titlespacing*{\subsection}{0cm}{*0.62}{*0.18}%
+  \setlist[itemize]{%
+    topsep=0.18em,
+    itemsep=0.08em,
+    parsep=0em,
+    partopsep=0pt,
+    leftmargin=1.35pc
+  }%
+}
 
 \pdfstringdefDisableCommands{%
   \let\faGraduationCap\relax
@@ -156,21 +178,21 @@
 
 \newcommand{\ResumeHeader}[5]{%
   \noindent
-  \begin{minipage}[t]{0.13\textwidth}
-    \vspace{0pt}\centering #1
+  \begin{minipage}[c]{0.13\textwidth}
+    \centering #1
   \end{minipage}%
-  \begin{minipage}[t]{0.74\textwidth}
-    \vspace{0pt}\centering
+  \begin{minipage}[c]{0.74\textwidth}
+    \centering
     {\Huge\bfseries\color{primaryColor}#2}\par
     \vspace{0.35ex}
-    {\sffamily\normalsize #3}\par
+    {\normalsize #3}\par
     \ifthenelse{\isempty{#4}}{}{%
-      \vspace{0.15ex}{\sffamily\normalsize #4}\par
+      \vspace{0.15ex}{\normalsize #4}\par
     }%
   \end{minipage}%
   \ifthenelse{\isempty{#5}}{}{%
-    \begin{minipage}[t]{0.13\textwidth}
-      \vspace{0pt}\raggedleft #5
+    \begin{minipage}[c]{0.13\textwidth}
+      \raggedleft #5
     \end{minipage}%
   }
   \vspace{0.15em}
@@ -181,19 +203,15 @@
 }
 
 \newcommand{\ResumeEntry}[3]{%
-  \noindent
-  \begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textbf{#1} & \textbf{#3}
-  \end{tabularx}\par
+  \datedsubsection{\textbf{#1}}{#3}%
   \ifthenelse{\isempty{#2}}{}{%
-    \vspace{-0.18em}{\small #2}\par
+    {\small #2}\par
   }%
-  \vspace{0.12em}
 }
 
 \newcommand{\ResumeAward}[3]{%
   \noindent
-  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+  \begin{tabularx}{\textwidth}{@{}X@{\hspace{1em}}r@{}}
     #1\ifthenelse{\isempty{#2}}{}{，#2} & #3
   \end{tabularx}\par
 }
