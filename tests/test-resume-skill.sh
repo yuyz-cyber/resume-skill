@@ -28,7 +28,15 @@ grep -Fq '工程项目' "$root/references/impact-writing.md"
 grep -Fq '性能与算法项目' "$root/references/impact-writing.md"
 grep -Fq '不固定项目数量' "$root/references/impact-writing.md"
 grep -Fq '不强制语义短标题' "$root/references/impact-writing.md"
+grep -Fq '默认不添加语义前缀' "$root/references/impact-writing.md"
+grep -Fq '除非用户原版已有，否则不引入' "$root/references/impact-writing.md"
+grep -Fq '无法确认实际技术时删除技术栈行' "$root/references/impact-writing.md"
+grep -Fq '禁止用“技术方向”' "$root/references/impact-writing.md"
+grep -Fq '逐字校对专业术语' "$root/references/impact-writing.md"
 grep -Fq '视觉母版' "$root/references/latex-delivery.md"
+grep -Fq '除非用户原版已有' "$root/SKILL.md"
+grep -Fq '禁止用“技术方向”' "$root/SKILL.md"
+grep -Fq '禁止生成 bullet 内字段' "$root/SKILL.md"
 
 tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/resume-skill-test.XXXXXX")
 trap 'rm -rf "$tmp_dir"' EXIT
