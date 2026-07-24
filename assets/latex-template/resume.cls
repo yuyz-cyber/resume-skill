@@ -1,27 +1,30 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{resume}[2026/07/22 一页中文技术简历]
+\ProvidesClass{resume}[2026/07/24 Chinese technical resume mother template]
 
-\LoadClass[10pt,a4paper,UTF8,fontset=none]{ctexart}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+\LoadClass[11pt,a4paper]{article}
 
 \RequirePackage[
-  left=1.52cm,
-  right=1.52cm,
-  top=0.98cm,
-  bottom=0.86cm,
-  noheadfoot
+  left=0.78in,
+  right=0.78in,
+  top=0.68in,
+  bottom=0.68in,
+  nohead
 ]{geometry}
-\RequirePackage{xcolor}
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+\RequirePackage{xifthen}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{titlesec}
 \RequirePackage{enumitem}
 \RequirePackage{tabularx}
 \RequirePackage{array}
 \RequirePackage{graphicx}
-\RequirePackage{xifthen}
-\RequirePackage{fontspec}
-\RequirePackage{xeCJK}
 \RequirePackage{hyperref}
+\RequirePackage{url}
+\RequirePackage{fontawesome}
 
-% 字体随模板分发，不依赖用户系统中的中文字体。
 \setmainfont[
   Path=fonts/,
   UprightFont=texgyretermes-regular.otf,
@@ -51,16 +54,19 @@
   UprightFont=SourceHanSansCN-Medium.otf
 ]{SourceHanSansCN-Medium.otf}
 
-\definecolor{ResumeNavy}{RGB}{22,72,125}
-\definecolor{ResumeCharcoal}{RGB}{28,31,35}
-\definecolor{ResumeMuted}{RGB}{84,91,99}
-\definecolor{ResumeRule}{RGB}{164,181,198}
-\definecolor{ResumePhotoRule}{RGB}{194,201,208}
+\definecolor{primaryColor}{RGB}{22,72,125}
+\definecolor{secondaryColor}{RGB}{68,68,68}
+\definecolor{accentColor}{RGB}{34,96,155}
+\definecolor{lightColor}{RGB}{245,247,250}
+\definecolor{darkColor}{RGB}{28,28,28}
+\definecolor{photoRule}{RGB}{190,198,207}
 
 \hypersetup{
   colorlinks=true,
-  urlcolor=ResumeNavy,
-  linkcolor=ResumeNavy,
+  linkcolor=primaryColor,
+  filecolor=accentColor,
+  urlcolor=accentColor,
+  citecolor=primaryColor,
   pdfborder={0 0 0}
 }
 \urlstyle{same}
@@ -68,137 +74,154 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\renewcommand\normalsize{\fontsize{10pt}{11.75pt}\selectfont}
-\AtBeginDocument{\normalsize\color{ResumeCharcoal}}
+\AtBeginDocument{\color{darkColor}}
 
 \setlist[itemize]{
-  leftmargin=1.35em,
-  label=\textbullet,
-  topsep=0.05em,
-  itemsep=0.02em,
-  parsep=0pt,
-  partopsep=0pt
+  topsep=0.22em,
+  itemsep=0.14em,
+  parsep=0.05em,
+  partopsep=0pt,
+  leftmargin=1.35pc
 }
 
 \titleformat{\section}
-  {\fontsize{13.2pt}{15pt}\selectfont\bfseries\color{ResumeNavy}\raggedright}
-  {}{0pt}{}
-  [\vspace{0.06em}\color{ResumeRule}\titlerule]
-\titlespacing*{\section}{0pt}{0.36em}{0.18em}
+  {\Large\bfseries\color{primaryColor}\raggedright}
+  {}{0em}{}
+  [\color{primaryColor}\titlerule]
+\titlespacing*{\section}{0cm}{0.68em}{0.40em}
 
-% 只高亮责任边界、核心贡献和经确认指标，不用于整句加粗。
+\pdfstringdefDisableCommands{%
+  \let\faGraduationCap\relax
+  \let\faHeartO\relax
+  \let\faCogs\relax
+  \let\faBriefcase\relax
+  \let\faUsers\relax
+  \let\faCode\relax
+}
+
+% High-signal phrases only: ownership, core mechanisms, scope, and metrics.
 \newcommand{\Key}[1]{{\ResumeKeyLatin\ResumeKeyCJK #1}}
 
-\newcommand{\ResumeMissingImage}[1]{%
-  \fcolorbox{ResumePhotoRule}{white}{%
-    \parbox[c][1.18cm][c]{1.05cm}{\centering\scriptsize\color{ResumeMuted}#1}%
-  }%
+\newcommand{\email}[1]{%
+  \texorpdfstring{\faEnvelope\ \href{mailto:#1}{#1}}{#1}%
+}
+\newcommand{\phone}[1]{%
+  \texorpdfstring{\faPhone\ #1}{#1}%
+}
+\newcommand{\homepage}[2][]{%
+  \texorpdfstring{\faLink\
+    \ifthenelse{\isempty{#1}}{\href{#2}{#2}}{\href{#2}{#1}}}{#2}%
+}
+\newcommand{\github}[2][]{%
+  \texorpdfstring{\faGithub\
+    \ifthenelse{\isempty{#1}}{\href{#2}{#2}}{\href{#2}{#1}}}{#2}%
 }
 
-\newcommand{\ResumeLogoImage}[1]{%
-  \IfFileExists{#1}{%
-    \includegraphics[width=1.16cm,height=1.16cm,keepaspectratio]{#1}%
+\newcommand{\schoolbadge}[1]{%
+  \IfFileExists{images/school.png}{%
+    \includegraphics[
+      width={#1}\paperwidth,
+      height=2.15cm,
+      keepaspectratio
+    ]{images/school.png}%
   }{%
-    \ClassWarning{resume}{找不到校徽图片 #1}%
-    \ResumeMissingImage{校徽缺失}%
+    \fcolorbox{photoRule}{white}{%
+      \parbox[c][1.65cm][c]{1.65cm}{%
+        \centering\scriptsize\color{secondaryColor}校徽%
+      }%
+    }%
   }%
 }
 
-\newcommand{\ResumePhotoImage}[1]{%
-  \IfFileExists{#1}{%
+\newcommand{\yourphoto}[1]{%
+  \IfFileExists{images/you.png}{%
     \begingroup
     \setlength{\fboxsep}{0pt}%
-    \fcolorbox{ResumePhotoRule}{white}{%
-      \includegraphics[width=1.12cm,height=1.42cm,keepaspectratio]{#1}%
+    \fcolorbox{photoRule}{white}{%
+      \includegraphics[
+        width={#1}\paperwidth,
+        height=2.55cm,
+        keepaspectratio
+      ]{images/you.png}%
     }%
     \endgroup
   }{%
-    \ClassWarning{resume}{找不到证件照图片 #1}%
-    \ResumeMissingImage{照片缺失}%
-  }%
-}
-
-\newcommand{\ResumeHeaderText}[3]{%
-  {\fontsize{21.5pt}{23.5pt}\selectfont\bfseries\color{ResumeNavy}#1}\par
-  \vspace{0.13em}
-  {\fontsize{9.7pt}{11.3pt}\selectfont #2}\par
-  \ifthenelse{\isempty{#3}}{}{%
-    \vspace{0.02em}{\fontsize{9.5pt}{11pt}\selectfont #3}\par
-  }%
-}
-
-% 参数依次为：校徽路径、姓名、第一行联系方式、第二行联系方式、证件照路径。
-% 图片路径为空即可取消。始终保留等宽左右栏，使单图模式的姓名仍居中。
-\newcommand{\ResumeHeader}[5]{%
-  \ifthenelse{\isempty{#1}}{%
-    \ifthenelse{\isempty{#5}}{%
-      \begin{center}
-        \ResumeHeaderText{#2}{#3}{#4}
-      \end{center}
-    }{%
-      \begin{tabularx}{\textwidth}{@{}p{1.46cm}X p{1.46cm}@{}}
-        {} &
-        \centering\arraybackslash\ResumeHeaderText{#2}{#3}{#4} &
-        \raggedleft\arraybackslash\ResumePhotoImage{#5}
-      \end{tabularx}
+    \fcolorbox{photoRule}{white}{%
+      \parbox[c][2.35cm][c]{1.75cm}{%
+        \centering\scriptsize\color{secondaryColor}证件照%
+      }%
     }%
-  }{%
-    \begin{tabularx}{\textwidth}{@{}p{1.46cm}X p{1.46cm}@{}}
-      \centering\ResumeLogoImage{#1} &
-      \centering\arraybackslash\ResumeHeaderText{#2}{#3}{#4} &
-      \ifthenelse{\isempty{#5}}{}{\raggedleft\arraybackslash\ResumePhotoImage{#5}}
-    \end{tabularx}
   }%
-  \vspace{-0.42em}
 }
 
-\newcommand{\ResumeSection}[1]{\section{#1}}
+\newcommand{\ResumeHeader}[5]{%
+  \noindent
+  \begin{minipage}[c]{0.13\textwidth}
+    \centering #1
+  \end{minipage}%
+  \begin{minipage}[c]{0.74\textwidth}
+    \centering
+    {\Huge\bfseries\color{primaryColor}#2}\par
+    \vspace{0.35ex}
+    {\sffamily\normalsize #3}\par
+    \ifthenelse{\isempty{#4}}{}{%
+      \vspace{0.15ex}{\sffamily\normalsize #4}\par
+    }%
+  \end{minipage}%
+  \begin{minipage}[c]{0.13\textwidth}
+    \raggedleft #5
+  \end{minipage}
+  \vspace{0.15em}
+}
+
+\newcommand{\ResumeSection}[2]{%
+  \section{\texorpdfstring{{\mdseries #1}\ \color{primaryColor}#2}{#2}}%
+}
 
 \newcommand{\ResumeEntry}[3]{%
-  \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textbf{#1} & {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & \textbf{#3}
   \end{tabularx}\par
   \ifthenelse{\isempty{#2}}{}{%
-    \vspace{-0.22em}{\fontsize{9.55pt}{10.8pt}\selectfont\color{ResumeMuted}#2}\par
+    \vspace{-0.18em}{\small #2}\par
   }%
-  \vspace{0.05em}
+  \vspace{0.12em}
+}
+
+\newcommand{\ResumeAward}[3]{%
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    #1\ifthenelse{\isempty{#2}}{}{，#2} & #3
+  \end{tabularx}\par
 }
 
 \newcommand{\ResumeProject}[2]{%
-  \vspace{0.30em}%
-  \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
-    {\fontsize{10.55pt}{12.3pt}\selectfont\textbf{#1}} &
-    {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#2}
+  \vspace{0.22em}%
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    {\fontsize{10.2}{12}\selectfont\textbf{#1}} &
+    {\fontsize{10.2}{12}\selectfont\textbf{#2}}
   \end{tabularx}\par
   \vspace{-0.08em}
 }
 
-\newcommand{\ResumeAward}[3]{%
-  \noindent\begin{tabularx}{\textwidth}{@{}Xr@{}}
-    #1\ifthenelse{\isempty{#2}}{}{，\textcolor{ResumeMuted}{#2}} &
-    {\fontsize{9.45pt}{11pt}\selectfont\color{ResumeMuted}#3}
-  \end{tabularx}\par
+\newcommand{\ResumeProjectSummary}[1]{%
+  \noindent\textbf{\small 项目介绍：}\small #1\par
 }
+
+\newcommand{\ResumeProjectStack}[1]{%
+  \noindent\textbf{\small 技术栈：}\small #1\par
+}
+
+\newcommand{\ResumeProjectWork}{%
+  \noindent\textbf{\small 项目工作：}\par
+}
+
+\newenvironment{ResumeBulletList}
+  {\begin{itemize}\small}
+  {\end{itemize}}
 
 \newcommand{\ResumeLine}[2]{%
   \noindent\textbf{#1}\ifthenelse{\isempty{#1}}{}{：}#2\par
 }
-
-\newcommand{\ResumeProjectStack}[1]{%
-  \noindent{\fontsize{9.55pt}{11.3pt}\selectfont\color{ResumeMuted}\textbf{技术：}#1}\par
-}
-
-\newcommand{\ResumeProjectSummary}[1]{%
-  \noindent{\fontsize{10.2pt}{12.8pt}\selectfont #1}\par
-}
-
-\newcommand{\ResumeEvidence}[2]{%
-  \noindent
-  \hangindent=1.32em\hangafter=1%
-  \makebox[1.32em][l]{\textbullet}%
-  \textbf{#1：}#2\par\vspace{0.02em}%
-}
-
-\newenvironment{ResumeBulletList}
-  {\begin{itemize}}
-  {\end{itemize}}
